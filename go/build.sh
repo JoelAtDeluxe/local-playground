@@ -5,15 +5,14 @@ set -e
 here="$(pwd)/$(dirname "$0")"
 
 project=$1
-mkdir $project
+mkdir -p $project
 cd $project
 go mod init scratch
 
 filename=main.go
 touch $filename
 
-echo "// Scratch file located here:" >> $filename
-echo " $(pwd)" >> $filename
+echo "// Scratch file located here: $(pwd)" >> $filename
 echo "" >> $filename
 cat $here/hello_world.go >> $filename
 
