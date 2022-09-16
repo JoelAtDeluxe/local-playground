@@ -1,6 +1,6 @@
 # Local ${lang} Playground
 
-A easier, better way to get a local playgroun experience
+A easier, better way to get a local playground experience
 
 because [Go's Playground](play.golang.org) kind of sucks.
 
