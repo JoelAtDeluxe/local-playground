@@ -9,9 +9,10 @@ if [ -z $lang ]; then
     exit
 fi
 
+dictionary=/usr/share/dict/words
 now=$(date -u +%Y%m%d)
 subfile="make_$lang.sh"
-label=$(shuf -n2 /usr/share/dict/words | sed -z --expression='s/\n/_/'
+label=$(shuf -n2 $dictionary | sed -z --expression='s/\n/_/'
 )
 
 if [ ! -f "$lang/build.sh" ]; then
@@ -19,7 +20,7 @@ if [ ! -f "$lang/build.sh" ]; then
     exit
 fi
 
-project_dir="$(pwd)/_$now-$label"
+project_dir="$(pwd)/playgrounds/$lang/$now-$label"
 
 pref_file=$(./$lang/build.sh "$project_dir")
 
