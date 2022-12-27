@@ -1,5 +1,18 @@
 #! /usr/bin/env bash
 
+rand_word() {
+    dictionary=/usr/share/dict/words
+    
+    word=$(shuf -n1 $dictionary)
+
+    until [[ ! $word =~ "'" ]]
+    do
+        word=$(shuf -n1 $dictionary)
+    done
+
+    echo $word
+}
+
 # Move to scratch root
 cd "$(dirname "$0")/"
 
@@ -9,11 +22,9 @@ if [ -z $lang ]; then
     exit
 fi
 
-dictionary=/usr/share/dict/words
 now=$(date -u +%Y%m%d)
 subfile="make_$lang.sh"
-label=$(shuf -n2 $dictionary | sed -z --expression='s/\n/_/'
-)
+label="$(rand_word)_$(rand_word)"
 
 if [ ! -f "$lang/build.sh" ]; then
     echo "Language \"$lang\" not supported"
